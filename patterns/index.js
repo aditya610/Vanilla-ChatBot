@@ -12,8 +12,12 @@
      intent : "currentWeather"
    },
    {
-     pattern : "\\b(joke||jokes)\\b",
+     pattern : "\\b(joke|jokes)\\b",
      intent : "Joke"
+   },
+   {
+     pattern : "\\bhelp\\b",
+     intent : "Help"
    }
  ]
 
