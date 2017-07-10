@@ -3,6 +3,7 @@
 const weather = require('./services/weatherService');
 const joke = require('./services/jokeService');
 const helpMsg = require('./services/helpService');
+const placeDetails = require('./services/placeInfoService');
 
 
 const readline = require('readline');
@@ -32,11 +33,10 @@ rl.on('line', userMsg => {
 
       case 'currentWeather':
         console.log(`Checking weather conditions in ${data.entities.city || data.entities.City }....`);
-        //get data from api
         weather.getWeather(data.entities.city||data.entities.City);
         setTimeout(function(){
           rl.prompt();
-        },3000);
+        },3500);
           break;
 
       case 'Joke':
@@ -47,6 +47,13 @@ rl.on('line', userMsg => {
       case 'Help':
         console.log(helpMsg);
         rl.prompt();
+        break;
+
+      case 'placeInfo':
+        placeDetails(data.entities.place);
+        setTimeout(function(){
+          rl.prompt();
+        },4500);
         break;
 
       default:

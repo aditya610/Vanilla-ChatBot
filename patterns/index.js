@@ -8,7 +8,7 @@
      intent : "Bye"
    },
    {
-     pattern : "(temp\\sin\\b(?<City>.+)|like\\sin\\s\\b(?<city>.+))",
+     pattern : "(temp\\sin\\b(?<City>.+)|weather\\s(like\\s)?in\\b(?<city>.+))",
      intent : "currentWeather"
    },
    {
@@ -18,6 +18,10 @@
    {
      pattern : "\\bhelp\\b",
      intent : "Help"
+   },
+   {
+     pattern : "Info\\b(?<place>.+)",
+     intent : "placeInfo"
    }
  ]
 
