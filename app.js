@@ -2,6 +2,7 @@
 
 const weather = require('./services/weatherService');
 const joke = require('./services/jokeService');
+const helpMsg = require('./services/helpService');
 
 
 const readline = require('readline');
@@ -44,7 +45,7 @@ rl.on('line', userMsg => {
         break;
 
       case 'Help':
-        help();
+        console.log(helpMsg);
         rl.prompt();
         break;
 
