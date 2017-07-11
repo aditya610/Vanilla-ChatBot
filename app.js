@@ -4,6 +4,7 @@ const weather = require('./services/weatherService');
 const joke = require('./services/jokeService');
 const helpMsg = require('./services/helpService');
 const placeDetails = require('./services/placeInfoService');
+const quote = require('./services/quoteService');
 
 
 const readline = require('readline');
@@ -36,7 +37,7 @@ rl.on('line', userMsg => {
         weather.getWeather(data.entities.city||data.entities.City);
         setTimeout(function(){
           rl.prompt();
-        },3500);
+        },4500);
           break;
 
       case 'Joke':
@@ -50,14 +51,23 @@ rl.on('line', userMsg => {
         break;
 
       case 'placeInfo':
+        console.log("Checking for place details...");
         placeDetails(data.entities.place);
         setTimeout(function(){
           rl.prompt();
         },4500);
         break;
 
+      case 'Quote':
+        quote();
+        rl.prompt();
+        break;
+
       default:
         console.log("I cant understand what you meant. You see I am a dumb ass robot.");
+        console.log("Please refer to the menu below to see what all I can do");
+        console.log(helpMsg);
+        console.log("In future if you want to get to this menu just type in 'help' (without quotes).");
         rl.prompt();
     }
   })

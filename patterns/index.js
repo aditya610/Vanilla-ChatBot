@@ -22,6 +22,10 @@
    {
      pattern : "Info\\b(?<place>.+)",
      intent : "placeInfo"
+   },
+   {
+     pattern : "\\bquote\\b",
+     intent : "Quote"
    }
  ]
 
