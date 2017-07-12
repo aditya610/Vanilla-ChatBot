@@ -5,6 +5,7 @@ const joke = require('./services/jokeService');
 const helpMsg = require('./services/helpService');
 const placeDetails = require('./services/placeInfoService');
 const quote = require('./services/quoteService');
+const define = require('./services/defineService');
 
 
 const readline = require('readline');
@@ -61,6 +62,13 @@ rl.on('line', userMsg => {
       case 'Quote':
         quote();
         rl.prompt();
+        break;
+
+      case 'Define':
+        define(data.entities.term);
+        setTimeout(function(){
+          rl.prompt();
+        },5500);
         break;
 
       default:

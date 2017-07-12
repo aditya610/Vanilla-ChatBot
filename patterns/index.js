@@ -26,6 +26,10 @@
    {
      pattern : "\\bquote\\b",
      intent : "Quote"
+   },
+   {
+     pattern : "\\bdefine\\b(?<term>.+)",
+     intent : "Define"
    }
  ]
 

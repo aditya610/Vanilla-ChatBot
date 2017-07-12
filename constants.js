@@ -5,10 +5,14 @@ const WEATHER_API_PREFIX_URL = `http://api.openweathermap.org/data/2.5/weather?A
 const PLACE_API_KEY = 'AIzaSyAZcutqDagqRZqm8iPOeo5-RWvokaq2cqk';
 const PLACE_AUTOCOMPLETE_API_PREFIX_URL = `https://maps.googleapis.com/maps/api/place/autocomplete/json?key=${PLACE_API_KEY}&input=`;
 const PLACE_DETAILS_API_PREFIX_URL = `https://maps.googleapis.com/maps/api/place/details/json?key=${PLACE_API_KEY}&placeid=`;
+const DEFINE_API_KEY = `RnbZ2fEahbmshgLifQqsp4CaFjwmp1GenKRjsntOIpBGX311nw`;
+const DEFINE_API_URL = `https://mashape-community-urban-dictionary.p.mashape.com/define?term=`;
 
 module.exports = {
   WEATHER_API_PREFIX_URL,
   KELVIN_CELCIUS_OFFSET,
   PLACE_AUTOCOMPLETE_API_PREFIX_URL,
-  PLACE_DETAILS_API_PREFIX_URL
+  PLACE_DETAILS_API_PREFIX_URL,
+  DEFINE_API_URL,
+  DEFINE_API_KEY
 }
