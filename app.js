@@ -73,9 +73,7 @@ rl.on('line', userMsg => {
 
       default:
         console.log("I cant understand what you meant. You see I am a dumb ass robot.");
-        console.log("Please refer to the menu below to see what all I can do");
-        console.log(helpMsg);
-        console.log("In future if you want to get to this menu just type in 'help' (without quotes).");
+        console.log("In order to view help menu just type the keyword 'help'");
         rl.prompt();
     }
   })
