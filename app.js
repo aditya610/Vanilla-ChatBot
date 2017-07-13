@@ -6,6 +6,7 @@ const helpMsg = require('./services/helpService');
 const placeDetails = require('./services/placeInfoService');
 const quote = require('./services/quoteService');
 const define = require('./services/defineService');
+const wikiSearch = require('./services/wikiService');
 
 
 const readline = require('readline');
@@ -56,7 +57,7 @@ rl.on('line', userMsg => {
         placeDetails(data.entities.place);
         setTimeout(function(){
           rl.prompt();
-        },4500);
+        },5000);
         break;
 
       case 'Quote':
@@ -68,7 +69,15 @@ rl.on('line', userMsg => {
         define(data.entities.term);
         setTimeout(function(){
           rl.prompt();
-        },5500);
+        },5000);
+        break;
+
+      case 'Wiki':
+        console.log(`Please wait, connecting to the servers...`);
+        wikiSearch(data.entities.wikiTerm);
+        setTimeout(function(){
+          rl.prompt();
+        },5000);
         break;
 
       default:

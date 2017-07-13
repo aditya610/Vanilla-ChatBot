@@ -7,6 +7,7 @@ const PLACE_AUTOCOMPLETE_API_PREFIX_URL = `https://maps.googleapis.com/maps/api/
 const PLACE_DETAILS_API_PREFIX_URL = `https://maps.googleapis.com/maps/api/place/details/json?key=${PLACE_API_KEY}&placeid=`;
 const DEFINE_API_KEY = `RnbZ2fEahbmshgLifQqsp4CaFjwmp1GenKRjsntOIpBGX311nw`;
 const DEFINE_API_URL = `https://mashape-community-urban-dictionary.p.mashape.com/define?term=`;
+const WIKI_API_PREFIX_URL = `https://en.wikipedia.org/w/api.php?action=opensearch&limit=1&namespace=0&format=json&search=`;
 
 module.exports = {
   WEATHER_API_PREFIX_URL,
@@ -14,5 +15,6 @@ module.exports = {
   PLACE_AUTOCOMPLETE_API_PREFIX_URL,
   PLACE_DETAILS_API_PREFIX_URL,
   DEFINE_API_URL,
-  DEFINE_API_KEY
+  DEFINE_API_KEY,
+  WIKI_API_PREFIX_URL
 }

@@ -4,7 +4,7 @@
      intent : "Hello"
    },
    {
-     pattern : "\\b(bye|exit|ttyl|seeya|cya|gn)\\b",
+     pattern : "\\b(bye|exit|ttyl|seeya|cya|gn|quit)\\b",
      intent : "Bye"
    },
    {
@@ -30,6 +30,10 @@
    {
      pattern : "\\bdefine\\b(?<term>.+)",
      intent : "Define"
+   },
+   {
+     pattern : "\\bwiki\\b(?<wikiTerm>.+)",
+     intent : "Wiki"
    }
  ]
 
