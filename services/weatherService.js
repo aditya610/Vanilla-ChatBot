@@ -3,7 +3,7 @@ const request = require('request');
 const constants = require('../constants');
 
 module.exports = {
-  getWeather: (cityname) => {
+  getWeather: (cityname, callback) => {
     request(
       constants.WEATHER_API_PREFIX_URL + encodeURIComponent(cityname),
       (error, response, body) => {
@@ -25,7 +25,7 @@ module.exports = {
           message += `Temperature: ${TempCelcius}C`;
           message += `\nMax Temperature: ${maxTempCelcius}C`;
           message += `\nMin Temperature: ${minTempCelcius}C`;
-          console.log(message);
+          callback(message);
         }
       }
     );
