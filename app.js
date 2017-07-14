@@ -20,6 +20,8 @@ const matcher = require('./matcher');
 rl.setPrompt("> ");
 rl.prompt();
 
+let defaultBotMsg = "I cant understand what you meant. You see I am a dumb ass robot.<br>In order to view help menu just type the keyword 'help'"
+
 
 var express = require('express');
 var app = express();
@@ -75,6 +77,28 @@ io.on('connection', function(socket){
                 });
               },1500);
               break;
+
+            case 'Quote':
+              quote( botMsg => {
+                socket.emit('postBotReply',botMsg);
+              });
+              break;
+
+            case 'Define':
+              define(data.entities.term,botMsg => {
+                socket.emit('postBotReply',botMsg);
+              });
+              break;
+
+            case 'Wiki':
+              wikiSearch(data.entities.wikiTerm,botMsg => {
+                socket.emit('postBotReply',botMsg);
+              });
+              break;
+
+              default:
+                socket.emit('postBotReply',defaultBotMsg);
+                break;
 
           }
         });

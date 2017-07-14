@@ -2,7 +2,7 @@
 const request = require('request');
 const constants = require('../constants');
 
-let getDefination = (term) => {
+let getDefination = (term,callback) => {
   request({
     url: `${constants.DEFINE_API_URL}${term}`,
       headers: {
@@ -18,7 +18,7 @@ let getDefination = (term) => {
         num++;
         msg += `#${num}  ${listItem.definition}\n\n`;
       });
-      console.log(msg);
+      callback(msg);
     } else {
       console.log(error);
     }
