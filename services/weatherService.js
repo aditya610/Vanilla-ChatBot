@@ -12,7 +12,7 @@ module.exports = {
         if (!error && response.statusCode === 200) {
           const weatherData = JSON.parse(body);
           let message = `${weatherData.weather[0].description}`
-          message += `\nHumidity: ${weatherData.main.humidity}%\n`;
+          message += `<br>Humidity: ${weatherData.main.humidity}%`;
           const TempCelcius = (
             (weatherData.main.temp - constants.KELVIN_CELCIUS_OFFSET)
               .toFixed(2));
@@ -22,9 +22,9 @@ module.exports = {
           const minTempCelcius = (
             (weatherData.main.temp_min - constants.KELVIN_CELCIUS_OFFSET)
               .toFixed(2));
-          message += `Temperature: ${TempCelcius}C`;
-          message += `\nMax Temperature: ${maxTempCelcius}C`;
-          message += `\nMin Temperature: ${minTempCelcius}C`;
+          message += `<br>Temperature: ${TempCelcius}C`;
+          message += `<br>Max Temperature: ${maxTempCelcius}C`;
+          message += `<br>Min Temperature: ${minTempCelcius}C`;
           callback(message);
         }
       }

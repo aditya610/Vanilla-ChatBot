@@ -1,16 +1,17 @@
 'use strict';
 const request = require('request');
 const constants = require('../constants');
-
+var msg;
+var placeId;
 
 let getPlaceId = (place) => {
+  msg = '';
   request(
     constants.PLACE_AUTOCOMPLETE_API_PREFIX_URL + encodeURIComponent(place),
     (error,response,body) => {
       if(!error && response.statusCode === 200){
         let data = JSON.parse(body);
-        var placeId = data.predictions[0].place_id;
-        getPlaceDetails(placeId);
+        placeId = data.predictions[0].place_id;
       }else {
         console.log("Sorry, unable to fetch place details");
       }
@@ -18,23 +19,27 @@ let getPlaceId = (place) => {
   )
 }
 
-let getPlaceDetails = (placeId) => {
+let getPlaceDetails = (callback) => {
   request(
     constants.PLACE_DETAILS_API_PREFIX_URL + encodeURIComponent(placeId),
     (error,response,body) => {
       if(!error && response.statusCode === 200){
         let placeDetails = JSON.parse(body);
-        var msg = ` # Address : ${placeDetails.result.formatted_address}`;
-        msg += `\n # Local Phone Number : ${placeDetails.result.formatted_phone_number || "NA"}`;
-        msg += `\n # International Phone Number : ${placeDetails.result.international_phone_number || "NA"}`;
-        msg += `\n # Coordinates ==>\n\tLatitude : ${placeDetails.result.geometry.location.lat}\n\tLongitude : ${placeDetails.result.geometry.location.lng || "none"}`;
-        msg += `\n # Rating : ${placeDetails.result.rating || "NA"}`;
-        console.log(msg);
+        var msg = ` <br># Address : ${placeDetails.result.formatted_address}`;
+        msg += `<br> # Local Phone Number : ${placeDetails.result.formatted_phone_number || "NA"}`;
+        msg += `<br> # International Phone Number : ${placeDetails.result.international_phone_number || "NA"}`;
+        msg += `<br> # Coordinates ==><br>&nbsp;&nbsp;&nbsp;&nbsp;Latitude : ${placeDetails.result.geometry.location.lat}<br>&nbsp;&nbsp;&nbsp;&nbsp;Longitude : ${placeDetails.result.geometry.location.lng || "none"}`;
+        msg += `<br> # Rating : ${placeDetails.result.rating || "NA"}<br>`;
+        callback(msg);
       }else{
-        console.log("Sorry, unable to fetch place details");
+        msg = "Sorry, unable to fetch place details";
+        callback(msg);
       }
     }
   )
 }
 
-module.exports = getPlaceId;
+module.exports =  {
+  getPlaceId,
+  getPlaceDetails
+}

@@ -52,10 +52,28 @@ io.on('connection', function(socket){
               break;
 
             case 'currentWeather':
-              console.log(`Checking weather conditions in ${data.entities.city || data.entities.City }....`);
               weather.getWeather(data.entities.city||data.entities.City,function(botMsg){
                 socket.emit('postBotReply',botMsg);
               });
+              break;
+
+            case 'Joke':
+              joke(function(botMsg){
+                socket.emit('postBotReply',botMsg);
+              });
+              break;
+
+            case 'Help':
+              socket.emit('postBotReply',helpMsg);
+              break;
+
+            case 'placeInfo':
+              placeDetails.getPlaceId(data.entities.place);
+              setTimeout(function(){
+                placeDetails.getPlaceDetails(botMsg => {
+                  socket.emit('postBotReply',botMsg);
+                });
+              },1500);
               break;
 
           }
