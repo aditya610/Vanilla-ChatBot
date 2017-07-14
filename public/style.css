@@ -1,0 +1,100 @@
+body, html {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #000000;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to bottom, #53346D, #000000);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to bottom, #53346D, #000000); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  color: white;
+  overflow-y: hidden;
+}
+
+li {
+  list-style: none;
+}
+
+.try{
+  display: flex;
+  justify-content: center;
+}
+
+
+.chatArea {
+  width: 90%;
+  height: 440px;
+  overflow-y: auto;
+  padding: 20px;
+  margin: 0;
+}
+
+h1 {
+  letter-spacing: .1em;
+  text-shadow: 2px 2px 2px black, 4px 4px 4px red, 8px 8px 6px black;
+}
+
+#tagline {
+  font-size: 1.5em;
+  text-shadow: 2px 2px 4px black;
+}
+
+.col-md-8 {
+  text-align: center;
+  height: 100%;
+}
+
+#messages {
+  text-align: left;
+}
+
+form {
+  margin: 1em;
+  text-align: center;
+  padding: 20px;
+}
+
+.form-control {
+  margin: 0 auto;
+  width: 75%;
+}
+
+#messages li {
+  text-align: left;
+  font-size: 1.3em;
+  background: rgba(255, 0, 0, 0.2);
+  border-radius: 20px;
+  padding: 10px;
+  margin: 10px;
+  display: inline-flex;
+  text-shadow: 2px 2px 3px black;
+}
+
+.col-md-4 h3 {
+  text-shadow: 2px 2px 4px black;
+  border-bottom: 2px solid rgba(255,255,255,.4);
+  padding: 5px;
+  box-shadow: 0 0 5px  rgba(0,0,0,.5);
+}
+
+#style-2::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 10px;
+	background-color: rgba(0,0,0,0);
+}
+
+#style-2::-webkit-scrollbar
+{
+	width: 8px;
+	background-color: rgba(0,0,0,0);
+}
+
+#style-2::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: rgba(0,0,0,0.2);
+}
