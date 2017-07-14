@@ -9,6 +9,9 @@ $(function () {
 
   socket.on('postBotReply',function(botMsg){
     $('#messages').append(`<li>${botMsg}</li>`);
+    $('.chatArea').stop().animate({
+      scrollTop: $('.chatArea')[0].scrollHeight
+    }, 800);
   })
 
   });
