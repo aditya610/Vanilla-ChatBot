@@ -2,7 +2,7 @@
   "name": "vanilla",
   "version": "1.0.0",
   "description": "A simple expression based terminal chat bot",
-  "main": "app.js",
+  "main": "node app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
