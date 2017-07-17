@@ -50,6 +50,11 @@ h1 {
   text-align: left;
 }
 
+#messages #userMsg {
+  background: rgba(0,0,0,.5);
+  float: right;
+}
+
 form {
   margin: 1em;
   text-align: center;
@@ -68,8 +73,10 @@ form {
   border-radius: 20px;
   padding: 10px;
   margin: 10px;
-  display: block;
   text-shadow: 2px 2px 3px black;
+  display: inline-block;
+  clear:both;
+  float:left;
 }
 
 .col-md-4 h3 {
