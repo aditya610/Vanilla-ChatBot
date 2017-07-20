@@ -48,7 +48,7 @@ var currentUser = '';
 
 
 app.get("/",function(req,res){
-  res.send("hi");
+  res.render("index");
 });
 
 //login
@@ -87,6 +87,7 @@ app.get("/logout",function(req,res){
   res.redirect("/");
 });
 
+//vanilla-chatbot
 app.get("/home",function(req,res){
   currentUser = req.user.username;
   res.render("home");
