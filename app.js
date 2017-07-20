@@ -51,21 +51,24 @@ app.get("/",function(req,res){
   res.send("hi");
 });
 
-
+//login
 app.get("/login",function(req,res){
   res.render("login");
 });
 
+//login logic
 app.post("/login",passport.authenticate("local",{
   successRedirect: "/home",
   failureRedirect: "/login"
   }),function(req,res){
 });
 
+//signup
 app.get("/signup",function(req,res){
   res.render("signup");
 });
 
+//signup logic
 app.post("/signup",function(req,res){
   var newUser = new User({username: req.body.username});
   User.register(newUser,req.body.password,function(err,user){
@@ -78,9 +81,14 @@ app.post("/signup",function(req,res){
   });
 });
 
+//logout
+app.get("/logout",function(req,res){
+  req.logout();
+  res.redirect("/");
+});
+
 app.get("/home",function(req,res){
   currentUser = req.user.username;
-  console.log(currentUser);
   res.render("home");
 });
 

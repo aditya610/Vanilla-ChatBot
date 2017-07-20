@@ -10,14 +10,20 @@
 </head>
 <body>
 
+  <nav>
+    <form action="/logout" method="get">
+      <input type="submit" id="logout" value="Logout">
+    </form>
+  </nav>
+
   <div class="container">
     <div class="row">
 
-      <div class="col-md-4">
+      <div class="col-md-3">
           <h3>Users Online</h3>
       </div>
 
-      <div class="col-md-8">
+      <div class="col-md-9">
         <h1>Vanilla</h1>
         <p id="tagline">Your friendly ChatBot</p>
           <div class="try">
@@ -27,11 +33,11 @@
               </ul>
             </div>
           </div>
-          <form class="form" autocomplete="off">
+          <form class="form" id="chat-form" autocomplete="off">
             <div class="form-group">
               <input class="inputMessage form-control" id="m" placeholder="Type here..."/>
             </div>
-            </form>
+          </form>
 
       </div>
 

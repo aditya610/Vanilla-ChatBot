@@ -13,6 +13,33 @@ body {
   overflow-y: hidden;
 }
 
+nav {
+  text-align: right;
+  margin: 10px;
+  margin-bottom: 0;
+}
+
+nav form {
+  display: inline;
+}
+
+#logout {
+  background: rgba(0,0,0,.3);
+  padding: 6px;
+  font-size: 1.2em;
+  border: none;
+  border-radius: 12%;
+  box-shadow: .5px .5px 2px white;
+  transition: .4s;
+}
+
+#logout:hover {
+  border: none;
+  background: rgba(255,255,255,.8);
+  color: black;
+  box-shadow: none;
+}
+
 li {
   list-style: none;
 }
@@ -24,8 +51,8 @@ li {
 
 
 .chatArea {
-  width: 90%;
-  height: 440px;
+  width: 80%;
+  height: 435px;
   overflow-y: auto;
   padding: 20px;
   margin: 0;
@@ -41,7 +68,7 @@ h1 {
   text-shadow: 2px 2px 4px black;
 }
 
-.col-md-8 {
+.col-md-9 {
   text-align: center;
   height: 100%;
 }
@@ -56,9 +83,9 @@ h1 {
 }
 
 form {
-  margin: 1em;
+  margin: .5em;
   text-align: center;
-  padding: 20px;
+  padding: 15px;
 }
 
 .form-control {
@@ -79,7 +106,7 @@ form {
   float:left;
 }
 
-.col-md-4 h3 {
+.col-md-3 h3 {
   text-shadow: 2px 2px 4px black;
   border-bottom: 2px solid rgba(255,255,255,.4);
   padding: 5px;
