@@ -44,6 +44,8 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
+var currentUser = '';
+
 
 app.get("/",function(req,res){
   res.send("hi");
@@ -77,6 +79,8 @@ app.post("/signup",function(req,res){
 });
 
 app.get("/home",function(req,res){
+  currentUser = req.user.username;
+  console.log(currentUser);
   res.render("home");
 });
 
@@ -151,7 +155,10 @@ io.on('connection', function(socket){
   });
 
   socket.on('userMessaged', (msg) => {
-    socket.emit('postUserMsg', msg);
+    socket.emit('postUserMsg', {
+      msg:msg,
+      username: currentUser
+    });
   })
 
 });
