@@ -51,10 +51,6 @@ app.get("/",function(req,res){
   res.render("index");
 });
 
-//login
-app.get("/login",function(req,res){
-  res.render("login");
-});
 
 //login logic
 app.post("/login",passport.authenticate("local",{
@@ -63,10 +59,6 @@ app.post("/login",passport.authenticate("local",{
   }),function(req,res){
 });
 
-//signup
-app.get("/signup",function(req,res){
-  res.render("signup");
-});
 
 //signup logic
 app.post("/signup",function(req,res){
