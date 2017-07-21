@@ -23,12 +23,12 @@
   </div>
 
   <div>
-      <input type="submit" class="btns" value="Login">
+      <input type="submit" class="btns" id="loginBtn" value="Login">
 
-      <input type="submit" class="btns" value="Sign up">
+      <input type="submit" class="btns" id="signupBtn" value="Sign up">
   </div>
 
-    <div class="formContainer">
+    <div class="formContainer" id="login">
       <H1>Login</H1>
       <form action="/login" method="post" class="form">
           <input class="input" type="text" name="username" placeholder="Username">
@@ -37,5 +37,10 @@
       </form>
     </div>
 
+    <script
+    src="https://code.jquery.com/jquery-3.2.1.min.js"
+    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+    crossorigin="anonymous"></script>
+  <script src="/scripts/LandingPage.js" charset="utf-8"></script>
 </body>
 </html>
