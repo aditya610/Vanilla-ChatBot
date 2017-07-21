@@ -23,15 +23,19 @@
   </div>
 
   <div>
-    <form action="/login" method="get">
       <input type="submit" class="btns" value="Login">
-    </form>
 
-    <form action="/login" method="get">
       <input type="submit" class="btns" value="Sign up">
-    </form>
-
   </div>
+
+    <div class="formContainer">
+      <H1>Login</H1>
+      <form action="/login" method="post" class="form">
+          <input class="input" type="text" name="username" placeholder="Username">
+          <input class="input" type="password" name="password" placeholder="Password">
+          <input type="submit" id="submitBtn" class="btn btn-primary">
+      </form>
+    </div>
 
 </body>
 </html>
