@@ -8,7 +8,13 @@ html, body {
 body {
   overflow-y: auto;
   /*overflow-x: hidden;*/
-  background: black;
+  background: #000000;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to bottom, #434343, #000000);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to bottom, #434343, #000000); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 #header {
@@ -28,15 +34,23 @@ body {
   color: white;
   font-family: raleway;
   font-weight: 400;
-  text-shadow: .5px .5px .5px red;
 }
 
 #text {
   font-size: 3em;
   color: white;
-  font-family: raleway;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 600;
+  letter-spacing: .15em;
   padding: 7%;
   text-align: center;
+}
+
+.typewrite {
+  color: white;
+  text-shadow: 2px 2px 1px red,5px 5px 10px rgba(0,0,255,.5);
+  font-style: italic;
+  text-decoration: none;
 }
 
 div {
@@ -63,6 +77,10 @@ text-align: center;
   color: black;
   background: white;
   border: 2px solid rgba(0,0,0,0);
+}
+
+.btns:focus, .input:focus {
+  outline:0;
 }
 
 .formContainer {
@@ -93,12 +111,9 @@ text-align: center;
   margin: 2em auto;
   padding: 5px;
   border: none;
-  border-radius: 5%;
+  border-radius: 25px;
   background: rgba(255,255,255,0.9);
   color: black;
   text-shadow: 1px 1px 1px black;
   font-size: 1.3em;
-}
-
-#submitBtn {
 }
