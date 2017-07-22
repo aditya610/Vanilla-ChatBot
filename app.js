@@ -11,6 +11,7 @@ const wikiSearch = require('./services/wikiService');
 
 
 const matcher = require('./matcher');
+const middleware = require('./middleware');
 
 let defaultBotMsg = "I cant understand what you meant. You see I am a dumb ass robot.<br>In order to view help menu just type the keyword 'help'"
 
@@ -80,7 +81,7 @@ app.get("/logout",function(req,res){
 });
 
 //vanilla-chatbot
-app.get("/home",function(req,res){
+app.get("/home",middleware.isLoggedIn,function(req,res){
   currentUser = req.user.username;
   res.render("home");
 });
@@ -91,7 +92,6 @@ io.on('connection', function(socket){
   console.log("user connected");
 
   socket.on('msgForBot', function(userMsg){
-
     matcher(userMsg, data => {
         switch (data.intent) {
 
@@ -160,7 +160,8 @@ io.on('connection', function(socket){
       msg:msg,
       username: currentUser
     });
-  })
+  });
+
 
 });
 
