@@ -28,7 +28,8 @@ var port = process.env.PORT || 3000;
 
 var User  = require('./models/users');
 
-mongoose.connect("mongodb://localhost/vanilla_chatbot");
+var DATABASE_URL = process.env.DATABASE_URL || "mongodb://localhost/vanilla_chatbot"
+mongoose.connect(DATABASE_URL);
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static(__dirname + '/public'));
 app.set("view engine","ejs");
