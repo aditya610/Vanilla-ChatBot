@@ -27,6 +27,12 @@ nav form {
   display: inline;
 }
 
+#usersArea li {
+  font-size: 1.5em;
+  padding-left: 8px;
+  text-shadow: 2px 2px 2px black, 1px 1px 3px red;
+}
+
 #logout {
   background: rgba(0,0,0,.3);
   padding: 6px;

@@ -163,6 +163,12 @@ io.on('connection', function(socket){
 
   });
 
+  socket.on('userConnected', () => {
+    socket.emit("displayUsers",{
+      currentUser:currentUser
+    })
+  });
+
   socket.on('userMessaged', (msg) => {
     socket.emit('postUserMsg', {
       msg:msg,
