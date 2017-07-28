@@ -15,7 +15,9 @@ message += `#5 Ask for a word defination (note: reply would be a little funny/sa
 message += `\t(command : define <word>, for eg : define syndrome) <br><br>`
 message += `#6 Search for anything<br>`
 message += `\t(command : wiki <search-term>, for eg : wiki javascript) <br><br>`
-message += `#7 If you are feeling lonely we can simply talk <br>`
+message += `#7 Ask for latest news <br>`
+message += `\t(command : news)<br><br>`
+message += `#8 If you are feeling lonely we can simply talk <br>`
 message += `\t(for eg : hi , wassup?)<br><br>`
 
 module.exports = message;
