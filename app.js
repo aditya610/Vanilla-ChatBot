@@ -8,6 +8,7 @@ const placeDetails = require('./services/placeInfoService');
 const quote = require('./services/quoteService');
 const define = require('./services/defineService');
 const wikiSearch = require('./services/wikiService');
+const news = require('./services/newsService');
 
 
 const matcher = require('./matcher');
@@ -147,9 +148,15 @@ io.on('connection', function(socket){
               });
               break;
 
-              default:
-                socket.emit('postBotReply',defaultBotMsg);
-                break;
+            case 'News':
+              news(botMsg => {
+                socket.emit('postBotReply',botMsg);
+              });
+              break;
+
+            default:
+              socket.emit('postBotReply',defaultBotMsg);
+              break;
 
           }
         });

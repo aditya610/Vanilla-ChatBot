@@ -34,6 +34,10 @@
    {
      pattern : "\\bwiki\\b(?<wikiTerm>.+)",
      intent : "Wiki"
+   },
+   {
+     pattern : "\\bnews\\b",
+     intent : "News"
    }
  ]
 
