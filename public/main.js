@@ -1,8 +1,6 @@
 $(function () {
     var socket = io();
     var input = $('#m');
-    var onlineUsers = 0;
-    var clients = [];
 
     $('#chat-form').submit(function(){
       socket.emit('userMessaged', input.val());
@@ -27,15 +25,25 @@ $(function () {
 
   socket.emit("userConnected");
 
-  socket.on('displayUsers', function(data){
-    if((jQuery.inArray(data.currentUser,clients)) === -1){
-      onlineUsers++;
-      clients.push(data.currentUser);
-      clients.forEach(function(username){
-        $('#usersNum').text(onlineUsers);
-        $('#usersArea').append(`<li>${username}</li>`);
-      });
+  socket.on('checkUser', function(data){
+    if((jQuery.inArray(data.currentUser,data.clients)) === -1){
+      socket.emit("addUserToArray");
     }
   });
 
+  socket.on("displayUsers", function(data){
+    data.clients.forEach(function(username){
+      $('#usersNum').text(data.onlineUsers);
+      $('#usersArea').append(`<li>${username}</li>`);
+    });
+  })
+
   });
+
+  // 
+  // data.onlineUsers++;
+  // data.clients.push(data.currentUser);
+  // clients.forEach(function(username){
+  //   $('#usersNum').text(onlineUsers);
+  //   $('#usersArea').append(`<li>${username}</li>`);
+  // });

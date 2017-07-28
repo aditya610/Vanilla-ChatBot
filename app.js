@@ -29,6 +29,9 @@ var port = process.env.PORT || 3000;
 
 var User  = require('./models/users');
 
+var onlineUsers = 0;
+var clients = [];
+
 var DATABASE_URL = process.env.DATABASE_URL || "mongodb://localhost/vanilla_chatbot"
 mongoose.connect(DATABASE_URL);
 app.use(bodyParser.urlencoded({extended:true}));
@@ -89,9 +92,9 @@ app.get("/home",middleware.isLoggedIn,function(req,res){
 });
 
 
-io.on('connection', function(socket){
+io.sockets.on('connection', function(socket){
 
-  console.log("user connected");
+  console.log("User Connected");
 
   socket.on('msgForBot', function(userMsg){
     matcher(userMsg, data => {
@@ -164,8 +167,18 @@ io.on('connection', function(socket){
   });
 
   socket.on('userConnected', () => {
+    socket.emit("checkUser",{
+      currentUser:currentUser,
+      clients:clients
+    })
+  });
+
+  socket.on("addUserToArray", () => {
+    clients.push(currentUser);
+    onlineUsers++;
     socket.emit("displayUsers",{
-      currentUser:currentUser
+      clients:clients,
+      onlineUsers:onlineUsers
     })
   });
 
