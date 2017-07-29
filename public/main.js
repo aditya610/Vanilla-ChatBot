@@ -35,7 +35,7 @@ $(function () {
   });
 
   socket.on("displayUsers", function(data){
-    $('#usersArea').text = ' ';
+    $('#usersArea').text(" ");
     $('#usersNum').text(data.clients.length);
     data.clients.forEach(function(username){
       $('#usersArea').append(`<li>${username}</li>`);
