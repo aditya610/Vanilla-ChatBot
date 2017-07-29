@@ -49,7 +49,6 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 var currentUser = '';
-var onlineUsers = 0;
 var clients = [];
 
 
@@ -97,6 +96,8 @@ io.on('connection', function(socket){
   console.log("User Connected");
   socket.username = currentUser;
   console.log(socket.username);
+
+  socket.emit("newConnection");
 
   socket.on('msgForBot', function(userMsg){
     matcher(userMsg, data => {
@@ -177,13 +178,11 @@ io.on('connection', function(socket){
 
   socket.on("addUserToArray", () => {
     clients.push(socket.username);
-    onlineUsers++;
   });
 
   socket.on("doneChecking", () => {
     socket.emit("displayUsers",{
-      clients:clients,
-      onlineUsers:onlineUsers
+      clients:clients
     });
   });
 
@@ -196,10 +195,11 @@ io.on('connection', function(socket){
 
 
   socket.on('disconnect', function () {
-    onlineUsers--;
     let index = clients.indexOf(socket.username);
     clients.splice(index, 1);
-
+    socket.emit("displayUsers",{
+      clients:clients
+    });
   });
 
 

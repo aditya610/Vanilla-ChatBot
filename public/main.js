@@ -23,7 +23,9 @@ $(function () {
     }, 800);
   });
 
-  socket.emit("userConnected");
+  socket.on("newConnection", function(){
+    socket.emit("userConnected");
+  });
 
   socket.on('checkUser', function(data){
     if((jQuery.inArray(data.currentUser,data.clients)) === -1){
@@ -34,7 +36,7 @@ $(function () {
 
   socket.on("displayUsers", function(data){
     data.clients.forEach(function(username){
-      $('#usersNum').text(data.onlineUsers);
+      $('#usersNum').text(data.clients.length);
       $('#usersArea').append(`<li>${username}</li>`);
     });
   })
