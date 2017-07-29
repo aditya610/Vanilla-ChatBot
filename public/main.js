@@ -1,24 +1,13 @@
 $(function () {
     var socket = io();
     var input = $('#m');
-    var botDeployed = false;
 
     $('#chat-form').submit(function(){
       socket.emit('userMessaged', input.val());
-
-      if(input.val() == 'bot deploy'){
-        botDeployed = true;
-      }else if(input.val() == 'bot sleep'){
-        botDeployed = false;
-      }
-
-      if(botDeployed){
-        socket.emit('msgForBot', input.val());
-      }
-
       input.val('');
       return false;
     });
+
 
   socket.on('postBotReply',function(botMsg){
     $('#messages').append(`<li><strong>Bot</strong><br>${botMsg}</li>`);
@@ -32,6 +21,9 @@ $(function () {
     $('.chatArea').stop().animate({
       scrollTop: $('.chatArea')[0].scrollHeight
     }, 800);
+    if(userMsg.botDeployed){
+      socket.emit('msgForBot',userMsg.msg);
+    }
   });
 
   socket.on("newConnection", function(){

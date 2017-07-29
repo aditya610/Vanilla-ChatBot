@@ -50,7 +50,7 @@ passport.deserializeUser(User.deserializeUser());
 
 var currentUser = '';
 var clients = [];
-
+var botDeployed = false;
 
 app.get("/",function(req,res){
   res.render("index");
@@ -191,9 +191,15 @@ io.on('connection', function(socket){
   });
 
   socket.on('userMessaged', (msg) => {
+    if(msg == 'bot deploy'){
+      botDeployed = true;
+    }else if(msg == 'bot sleep') {
+      botDeployed = false
+    }
     io.sockets.emit('postUserMsg', {
       msg:msg,
-      username: socket.username
+      username: socket.username,
+      botDeployed: botDeployed
     });
   });
 
