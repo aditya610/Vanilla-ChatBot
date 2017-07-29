@@ -1,10 +1,21 @@
 $(function () {
     var socket = io();
     var input = $('#m');
+    var botDeployed = false;
 
     $('#chat-form').submit(function(){
       socket.emit('userMessaged', input.val());
-      socket.emit('msgForBot', input.val());
+
+      if(input.val() == 'bot deploy'){
+        botDeployed = true;
+      }else if(input.val() == 'bot sleep'){
+        botDeployed = false;
+      }
+
+      if(botDeployed){
+        socket.emit('msgForBot', input.val());
+      }
+
       input.val('');
       return false;
     });

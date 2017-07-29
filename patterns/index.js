@@ -38,6 +38,10 @@
    {
      pattern : "\\bnews\\b",
      intent : "News"
+   },
+   {
+     pattern : "\\bdeploy\\b",
+     intent : "BotDeploy"
    }
  ]
 

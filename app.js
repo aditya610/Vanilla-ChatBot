@@ -104,64 +104,68 @@ io.on('connection', function(socket){
         switch (data.intent) {
 
           case 'Hello':
-            socket.emit('postBotReply',data.entities.greeting);
+            io.sockets.emit('postBotReply',data.entities.greeting);
             break;
 
             case 'Bye':
-              socket.emit('postBotReply','Seeya');
+              io.sockets.emit('postBotReply','Seeya');
               break;
 
             case 'currentWeather':
               weather.getWeather(data.entities.city||data.entities.City,function(botMsg){
-                socket.emit('postBotReply',botMsg);
+                io.sockets.emit('postBotReply',botMsg);
               });
               break;
 
             case 'Joke':
               joke(function(botMsg){
-                socket.emit('postBotReply',botMsg);
+                io.sockets.emit('postBotReply',botMsg);
               });
               break;
 
             case 'Help':
-              socket.emit('postBotReply',helpMsg);
+              io.sockets.emit('postBotReply',helpMsg);
               break;
 
             case 'placeInfo':
               placeDetails.getPlaceId(data.entities.place);
               setTimeout(function(){
                 placeDetails.getPlaceDetails(botMsg => {
-                  socket.emit('postBotReply',botMsg);
+                  io.sockets.emit('postBotReply',botMsg);
                 });
               },3000);
               break;
 
             case 'Quote':
               quote( botMsg => {
-                socket.emit('postBotReply',botMsg);
+                io.sockets.emit('postBotReply',botMsg);
               });
               break;
 
             case 'Define':
               define(data.entities.term,botMsg => {
-                socket.emit('postBotReply',botMsg);
+                io.sockets.emit('postBotReply',botMsg);
               });
               break;
 
             case 'Wiki':
               wikiSearch(data.entities.wikiTerm,botMsg => {
-                socket.emit('postBotReply',botMsg);
+                io.sockets.emit('postBotReply',botMsg);
               });
               break;
 
             case 'News':
               news(botMsg => {
-                socket.emit('postBotReply',botMsg);
+                io.sockets.emit('postBotReply',botMsg);
               });
               break;
 
+            case 'BotDeploy':
+              io.sockets.emit('postBotReply','Why the hell you wake me up man?');
+              break;
+
             default:
-              socket.emit('postBotReply',defaultBotMsg);
+              io.sockets.emit('postBotReply',defaultBotMsg);
               break;
 
           }
@@ -187,7 +191,7 @@ io.on('connection', function(socket){
   });
 
   socket.on('userMessaged', (msg) => {
-    socket.emit('postUserMsg', {
+    io.sockets.emit('postUserMsg', {
       msg:msg,
       username: socket.username
     });
