@@ -35,6 +35,7 @@ $(function () {
   });
 
   socket.on("displayUsers", function(data){
+    $('#usersArea').text = '';
     data.clients.forEach(function(username){
       $('#usersNum').text(data.clients.length);
       $('#usersArea').append(`<li>${username}</li>`);
@@ -42,11 +43,3 @@ $(function () {
   })
 
   });
-
-  //
-  // data.onlineUsers++;
-  // data.clients.push(data.currentUser);
-  // clients.forEach(function(username){
-  //   $('#usersNum').text(onlineUsers);
-  //   $('#usersArea').append(`<li>${username}</li>`);
-  // });
