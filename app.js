@@ -190,16 +190,23 @@ io.on('connection', function(socket){
     });
   });
 
-  socket.on('userMessaged', (msg) => {
+  socket.on("checkIfForBot", (msg) => {
     if(msg == 'bot deploy'){
       botDeployed = true;
     }else if(msg == 'bot sleep') {
       botDeployed = false
     }
+
+    if(botDeployed){
+      socket.emit('getBotReply',msg);
+    }
+
+  });
+
+  socket.on('userMessaged', (msg) => {
     io.sockets.emit('postUserMsg', {
       msg:msg,
-      username: socket.username,
-      botDeployed: botDeployed
+      username: socket.username
     });
   });
 

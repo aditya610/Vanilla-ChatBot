@@ -4,9 +4,14 @@ $(function () {
 
     $('#chat-form').submit(function(){
       socket.emit('userMessaged', input.val());
+      socket.emit('checkIfForBot',input.val());
       input.val('');
       return false;
     });
+
+  socket.on('getBotReply', function(msg){
+    socket.emit('msgForBot',msg);
+  });
 
 
   socket.on('postBotReply',function(botMsg){
@@ -21,9 +26,6 @@ $(function () {
     $('.chatArea').stop().animate({
       scrollTop: $('.chatArea')[0].scrollHeight
     }, 800);
-    if(userMsg.botDeployed){
-      socket.emit('msgForBot',userMsg.msg);
-    }
   });
 
   socket.on("newConnection", function(){
