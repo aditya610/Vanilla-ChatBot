@@ -181,7 +181,7 @@ io.on('connection', function(socket){
   });
 
   socket.on("doneChecking", () => {
-    socket.emit("displayUsers",{
+    io.sockets.emit("displayUsers",{
       clients:clients
     });
   });
@@ -197,7 +197,7 @@ io.on('connection', function(socket){
   socket.on('disconnect', function () {
     let index = clients.indexOf(socket.username);
     clients.splice(index, 1);
-    socket.emit("displayUsers",{
+    io.sockets.emit("displayUsers",{
       clients:clients
     });
   });
