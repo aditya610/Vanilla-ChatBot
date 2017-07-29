@@ -29,8 +29,6 @@ var port = process.env.PORT || 3000;
 
 var User  = require('./models/users');
 
-var onlineUsers = 0;
-var clients = [];
 
 var DATABASE_URL = process.env.DATABASE_URL || "mongodb://localhost/vanilla_chatbot"
 mongoose.connect(DATABASE_URL);
@@ -51,6 +49,8 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 var currentUser = '';
+var onlineUsers = 0;
+var clients = [];
 
 
 app.get("/",function(req,res){
@@ -92,9 +92,11 @@ app.get("/home",middleware.isLoggedIn,function(req,res){
 });
 
 
-io.sockets.on('connection', function(socket){
+io.on('connection', function(socket){
 
   console.log("User Connected");
+  socket.username = currentUser;
+  console.log(socket.username);
 
   socket.on('msgForBot', function(userMsg){
     matcher(userMsg, data => {
@@ -168,25 +170,36 @@ io.sockets.on('connection', function(socket){
 
   socket.on('userConnected', () => {
     socket.emit("checkUser",{
-      currentUser:currentUser,
+      currentUser:socket.username,
       clients:clients
     })
   });
 
   socket.on("addUserToArray", () => {
-    clients.push(currentUser);
+    clients.push(socket.username);
     onlineUsers++;
+  });
+
+  socket.on("doneChecking", () => {
     socket.emit("displayUsers",{
       clients:clients,
       onlineUsers:onlineUsers
-    })
+    });
   });
 
   socket.on('userMessaged', (msg) => {
     socket.emit('postUserMsg', {
       msg:msg,
-      username: currentUser
+      username: socket.username
     });
+  });
+
+
+  socket.on('disconnect', function () {
+    onlineUsers--;
+    let index = clients.indexOf(socket.username);
+    clients.splice(index, 1);
+
   });
 
 

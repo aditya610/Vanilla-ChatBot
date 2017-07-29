@@ -29,6 +29,7 @@ $(function () {
     if((jQuery.inArray(data.currentUser,data.clients)) === -1){
       socket.emit("addUserToArray");
     }
+    socket.emit("doneChecking");
   });
 
   socket.on("displayUsers", function(data){
@@ -40,7 +41,7 @@ $(function () {
 
   });
 
-  // 
+  //
   // data.onlineUsers++;
   // data.clients.push(data.currentUser);
   // clients.forEach(function(username){
