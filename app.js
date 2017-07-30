@@ -164,6 +164,10 @@ io.on('connection', function(socket){
               io.sockets.emit('postBotReply','Why the hell you wake me up man?');
               break;
 
+            case 'BotSleep':
+              io.sockets.emit('postBotReply','Good night....');
+              break;
+
             default:
               io.sockets.emit('postBotReply',defaultBotMsg);
               break;
@@ -191,14 +195,17 @@ io.on('connection', function(socket){
   });
 
   socket.on("checkIfForBot", (msg) => {
+
     if(msg == 'bot deploy'){
       botDeployed = true;
-    }else if(msg == 'bot sleep') {
-      botDeployed = false
     }
 
     if(botDeployed){
       socket.emit('getBotReply',msg);
+    }
+
+    if(msg == 'bot sleep') {
+      botDeployed = false
     }
 
   });
@@ -208,6 +215,7 @@ io.on('connection', function(socket){
       msg:msg,
       username: socket.username
     });
+    socket.emit('addStyling');
   });
 
 

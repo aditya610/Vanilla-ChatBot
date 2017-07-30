@@ -22,10 +22,14 @@ $(function () {
   });
 
   socket.on('postUserMsg', function(userMsg){
-    $('#messages').append(`<li id='userMsg'><strong>${userMsg.username}</strong><br>${userMsg.msg}</li>`);
+    $('#messages').append(`<li><strong>${userMsg.username}</strong><br>${userMsg.msg}</li>`);
     $('.chatArea').stop().animate({
       scrollTop: $('.chatArea')[0].scrollHeight
     }, 800);
+  });
+
+  socket.on('addStyling', function(){
+    $('#messages li:nth-last-child(1)').addClass('userMsg');
   });
 
   socket.on("newConnection", function(){

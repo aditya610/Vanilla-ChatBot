@@ -42,6 +42,10 @@
    {
      pattern : "\\bdeploy\\b",
      intent : "BotDeploy"
+   },
+   {
+     pattern : "\\bsleep\\b",
+     intent : "BotSleep"
    }
  ]
 
