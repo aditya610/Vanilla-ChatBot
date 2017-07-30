@@ -42,7 +42,7 @@ $(function () {
   });
 
   socket.on('addBgColor', function(data){
-    $('#messages li.bg').css(`background`, `${data.color}`);
+    $('#messages li.bg:nth-last-child(1)').css(`background`, `${data.color}`);
   })
 
   socket.on("newConnection", function(){
