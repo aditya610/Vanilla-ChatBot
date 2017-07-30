@@ -103,6 +103,10 @@ io.on('connection', function(socket){
     username: socket.username
   });
 
+  socket.on('saveUserColor', function(color){
+    socket.color = color;
+  });
+
   socket.on('msgForBot', function(userMsg){
     matcher(userMsg, data => {
         switch (data.intent) {
@@ -220,6 +224,9 @@ io.on('connection', function(socket){
       username: socket.username
     });
     socket.emit('addStyling');
+    io.sockets.emit('addBgColor', {
+      color: socket.color
+    })
   });
 
 

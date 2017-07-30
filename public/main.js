@@ -14,6 +14,7 @@ $(function () {
     hex = intToRGB(hashCode(data.username));
     rgb = hexToRgb(hex);
     color = `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.5)`;
+    socket.emit('saveUserColor',color);
     // $('#messages li.userMsg').css(`background`, `#${color}`);
   });
 
@@ -30,17 +31,19 @@ $(function () {
   });
 
   socket.on('postUserMsg', function(userMsg){
-    $('#messages').append(`<li><strong>${userMsg.username}</strong><br>${userMsg.msg}</li>`);
+    $('#messages').append(`<li class='bg'><strong>${userMsg.username}</strong><br>${userMsg.msg}</li>`);
     $('.chatArea').stop().animate({
       scrollTop: $('.chatArea')[0].scrollHeight
     }, 800);
   });
 
-  socket.on('addStyling', function(){
+  socket.on('addStyling', function(data){
     $('#messages li:nth-last-child(1)').addClass('userMsg');
-    console.log(color);
-    $('#messages li.userMsg').css(`background`, `${color}`);
   });
+
+  socket.on('addBgColor', function(data){
+    $('#messages li.bg').css(`background`, `${data.color}`);
+  })
 
   socket.on("newConnection", function(){
     socket.emit("userConnected");
