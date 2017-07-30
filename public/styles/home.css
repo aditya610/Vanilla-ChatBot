@@ -88,7 +88,8 @@ h1 {
 }
 
 #messages .userMsg {
-  background: rgba(0,0,0,.5);
+  /*background: rgba(0,0,0,.5);*/
+  text-align: right;
   float: right;
 }
 

@@ -99,6 +99,10 @@ io.on('connection', function(socket){
 
   socket.emit("newConnection");
 
+  socket.emit('getUserColour',{
+    username: socket.username
+  });
+
   socket.on('msgForBot', function(userMsg){
     matcher(userMsg, data => {
         switch (data.intent) {
