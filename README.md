@@ -2,7 +2,7 @@
 
 A very simple regex based chatBot.
 
-### Installing And Running Locally
+## Installing And Running Locally
 
   Make sure node and npm are installed.<br>
   Download all the dependencies.<br>
